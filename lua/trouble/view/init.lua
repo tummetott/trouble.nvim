@@ -668,7 +668,7 @@ function M:render()
 
   -- fast exit when cursor is already on the right item
   local new_loc = self:at()
-  if new_loc.node and loc.node and new_loc.node.id == loc.node.id then
+  if new_loc.node and loc.node and loc.node:is(new_loc.node) then
     return
   end
 
