@@ -53,6 +53,12 @@ function M.new(opts)
     self:on_mount()
   end
   self.opts.win.on_close = function()
+    if self.win:valid() then
+      local loc = self:at()
+      if loc.node then
+        M._last[self.opts.mode or ""] = loc
+      end
+    end
     if not self.opts.auto_open then
       for _, section in ipairs(self.sections) do
         section:stop()
